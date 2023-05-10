@@ -30,7 +30,7 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/milosen/topological-labyrinths-rl',
     license="GPLv3",
-    packages=["topoworld"],
+    packages=find_packages(),
     package_data={'topoworld': []},
     install_requires=[
         'tqdm',
