@@ -6,20 +6,20 @@ from miniworld.entity import Box
 from miniworld.params import DEFAULT_PARAMS
 from miniworld.envs.maze import Maze
 
-default_params = DEFAULT_PARAMS.no_random()
-default_params.set("forward_step", 0.7)
-default_params.set("turn_step", 25)
-
-
-import random
 from enum import Enum
-from typing import Union, Optional, List, Any
+from typing import Union, Optional, List, Any, Tuple
+from typing import Dict as DictType
 
 import gymnasium as gym
 from gymnasium import spaces
 import numpy as np
 import itertools
 import networkx as nx
+
+
+default_params = DEFAULT_PARAMS.no_random()
+default_params.set("forward_step", 0.7)
+default_params.set("turn_step", 25)
 
 
 def n_edges_grid(lx, lz):
@@ -265,9 +265,9 @@ class TopoMaze(Maze):
     def reset(
         self,
         *,
-        seed: int | None = None,
-        options: dict[str, Any] | None = None,
-    ) -> tuple[ObsType, dict[str, Any]]:
+        seed: Union[int, None] = None,
+        options: Union[DictType[str, Any], None] = None,
+    ) -> Tuple[ObsType, DictType[str, Any]]:
         if self.reset_seed:
             return super().reset(seed=self.reset_seed)
         else:
@@ -326,9 +326,9 @@ class TopoMazeMeta(gym.Env):
     def reset(
         self,
         *,
-        seed: int | None = None,
-        options: dict[str, Any] | None = None,
-    ) -> tuple[ObsType, dict[str, Any]]:
+        seed: Union[int, None] = None,
+        options: Union[DictType[str, Any], None] = None,
+    ) -> Tuple[ObsType, DictType[str, Any]]:
         super().reset(seed=seed)
         self.prev_observation = np.zeros_like(self.inner_maze.observation_space.sample())
         self.prev_action = np.zeros_like(self.inner_maze.action_space.sample())
