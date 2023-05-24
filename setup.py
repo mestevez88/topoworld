@@ -28,7 +28,7 @@ setup(
     description='TopoWorld: Topological game environments for benchmarking Reinforcement Learning',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/milosen/topological-labyrinths-rl',
+    url='https://github.com/milosen/topoworld',
     license="GPLv3",
     packages=find_packages(),
     package_data={'topoworld': []},
